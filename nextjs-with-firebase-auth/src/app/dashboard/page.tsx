@@ -1,21 +1,41 @@
 "use client";
 
-import { useState } from "react";
 import StatisticsCards from "@/components/Dashboard/StatisticsCards";
 import SalesChart from "@/components/Dashboard/SalesChart";
 import TodayOrders from "@/components/Dashboard/TodayOrders";
-import { useGetDashboardStatsQuery } from "@/redux/slices/api/dashboardAPISlice";
-import Spinner from "@/components/Spinner/Spinner";
+import PaymentMethodChart from "@/components/Dashboard/PaymentMethodChart";
+import TopSellingDish from "@/components/Dashboard/TopSellingDish";
+import TopSellingTables from "@/components/Dashboard/TopSellingTables";
 
 export default function DashboardPage() {
-  const [selectedBranch, setSelectedBranch] = useState<number | undefined>(
-    undefined
-  );
+  // Dummy data for all sections
+  const dummyStats = {
+    todayOrders: 0,
+    todayOrdersChange: -100,
+    todayEarnings: 0,
+    todayEarningsChange: -100,
+    todayCustomers: 0,
+    todayCustomersChange: 0,
+    averageDailyEarnings: 0,
+    averageDailyEarningsChange: -100,
+    salesThisMonth: 0,
+    salesThisMonthChange: -100,
+  };
 
-  // Fetch dashboard data
-  const { data, isLoading, isError } = useGetDashboardStatsQuery({
-    branchId: selectedBranch,
-  });
+  const dummySalesData = [
+    { month: "৳6", sales: 0 },
+    { month: "৳5", sales: 0 },
+    { month: "৳4", sales: 0 },
+    { month: "৳3", sales: 0 },
+    { month: "৳2", sales: 0 },
+    { month: "৳1", sales: 0 },
+    { month: "৳0", sales: 0 },
+  ];
+
+  const dummyTodayOrders: any[] = [];
+  const dummyPaymentMethods: any[] = [];
+  const dummyTopDishes: any[] = [];
+  const dummyTopTables: any[] = [];
 
   return (
     <div className="space-y-6">
@@ -29,53 +49,37 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      {/* Loading State */}
-      {isLoading && (
-        <div className="flex justify-center items-center h-64">
-          <Spinner />
+      {/* Statistics Section */}
+      <section>
+        <h2 className="text-xl font-bold text-gray-800 mb-4">Statistics</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Stats Cards */}
+          <div className="lg:col-span-2">
+            <StatisticsCards stats={dummyStats} />
+          </div>
+
+          {/* Right Column - Today Orders */}
+          <div className="lg:col-span-1">
+            <TodayOrders orders={dummyTodayOrders} />
+          </div>
         </div>
-      )}
+      </section>
 
-      {/* Error State */}
-      {isError && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <p className="text-sm text-red-800">
-            Failed to load dashboard data. Please try again.
-          </p>
-        </div>
-      )}
+      {/* Sales Chart Section */}
+      <section>
+        <SalesChart
+          salesData={dummySalesData}
+          salesThisMonth={dummyStats.salesThisMonth}
+          salesThisMonthChange={dummyStats.salesThisMonthChange}
+        />
+      </section>
 
-      {/* Dashboard Content */}
-      {!isLoading && !isError && (
-        <>
-          {/* Statistics Section */}
-          <section>
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Statistics
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Left Column - Stats Cards */}
-              <div className="lg:col-span-2">
-                <StatisticsCards stats={data?.stats} />
-              </div>
-
-              {/* Right Column - Today Orders */}
-              <div className="lg:col-span-1">
-                <TodayOrders orders={data?.todayOrders} />
-              </div>
-            </div>
-          </section>
-
-          {/* Sales Chart Section */}
-          <section>
-            <SalesChart
-              salesData={data?.salesData}
-              salesThisMonth={data?.stats?.salesThisMonth || 0}
-              salesThisMonthChange={data?.stats?.salesThisMonthChange || -100}
-            />
-          </section>
-        </>
-      )}
+      {/* Additional Analytics Sections */}
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <PaymentMethodChart data={dummyPaymentMethods} />
+        <TopSellingDish data={dummyTopDishes} />
+        <TopSellingTables data={dummyTopTables} />
+      </section>
     </div>
   );
 }
