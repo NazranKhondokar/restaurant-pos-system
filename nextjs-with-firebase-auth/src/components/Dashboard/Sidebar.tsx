@@ -50,8 +50,11 @@ export default function Sidebar() {
       path: "/dashboard/menu",
       hasSubmenu: true,
       submenu: [
-        { name: "Categories", path: "/dashboard/menu/categories" },
-        { name: "Items", path: "/dashboard/menu/items" },
+        { name: "Menus", path: "/dashboard/menu/menus" },
+        { name: "Menu Items", path: "/dashboard/menu/items" },
+        { name: "Item Categories", path: "/dashboard/menu/categories" },
+        { name: "Modifier Groups", path: "/dashboard/menu/modifier-groups" },
+        { name: "Item Modifiers", path: "/dashboard/menu/modifiers" },
       ],
     },
     {
@@ -60,8 +63,9 @@ export default function Sidebar() {
       path: "/dashboard/tables",
       hasSubmenu: true,
       submenu: [
-        { name: "Floors", path: "/dashboard/tables/floors" },
-        { name: "All Tables", path: "/dashboard/tables/all" },
+        { name: "Areas", path: "/dashboard/tables/areas" },
+        { name: "Tables", path: "/dashboard/tables/all" },
+        { name: "QR Codes", path: "/dashboard/tables/qr-codes" },
       ],
     },
     {
@@ -105,8 +109,8 @@ export default function Sidebar() {
       path: "/dashboard/expenses",
       hasSubmenu: true,
       submenu: [
-        { name: "All Expenses", path: "/dashboard/expenses/all" },
-        { name: "Add Expense", path: "/dashboard/expenses/add" },
+        { name: "Expenses", path: "/dashboard/expenses/all" },
+        { name: "Expense Categories", path: "/dashboard/expenses/categories" },
       ],
     },
     {
@@ -115,8 +119,8 @@ export default function Sidebar() {
       path: "/dashboard/payments",
       hasSubmenu: true,
       submenu: [
-        { name: "All Payments", path: "/dashboard/payments/all" },
-        { name: "Payment Methods", path: "/dashboard/payments/methods" },
+        { name: "Payments", path: "/dashboard/payments/all" },
+        { name: "Due Payments", path: "/dashboard/payments/due" },
       ],
     },
     {
@@ -125,9 +129,15 @@ export default function Sidebar() {
       path: "/dashboard/reports",
       hasSubmenu: true,
       submenu: [
-        { name: "Sales Reports", path: "/dashboard/reports/sales" },
-        { name: "Inventory Reports", path: "/dashboard/reports/inventory" },
-        { name: "Customer Reports", path: "/dashboard/reports/customers" },
+        { name: "Sales Report", path: "/dashboard/reports/sales" },
+        { name: "Item Report", path: "/dashboard/reports/items" },
+        { name: "Category Report", path: "/dashboard/reports/categories" },
+        { name: "Delivery App Report", path: "/dashboard/reports/delivery-app" },
+        { name: "Expense Reports", path: "/dashboard/reports/expenses" },
+        { name: "POS Machine Report", path: "/dashboard/reports/pos-machines" },
+        { name: "Cancelled Order Report", path: "/dashboard/reports/cancelled-orders" },
+        { name: "Removed KOT Item Report", path: "/dashboard/reports/removed-kot-items" },
+        { name: "Tax Report", path: "/dashboard/reports/tax" },
       ],
     },
     {
@@ -136,9 +146,12 @@ export default function Sidebar() {
       path: "/dashboard/cash-register",
       hasSubmenu: true,
       submenu: [
-        { name: "Open Register", path: "/dashboard/cash-register/open" },
-        { name: "Close Register", path: "/dashboard/cash-register/close" },
-        { name: "Sessions", path: "/dashboard/cash-register/sessions" },
+        { name: "Register Dashboard", path: "/dashboard/cash-register/dashboard" },
+        { name: "Cash Register", path: "/dashboard/cash-register/register" },
+        { name: "Reports", path: "/dashboard/cash-register/reports" },
+        { name: "Approvals", path: "/dashboard/cash-register/approvals" },
+        { name: "Denominations", path: "/dashboard/cash-register/denominations" },
+        { name: "Register Settings", path: "/dashboard/cash-register/settings" },
       ],
     },
     {
@@ -147,9 +160,20 @@ export default function Sidebar() {
       path: "/dashboard/inventory",
       hasSubmenu: true,
       submenu: [
-        { name: "Items", path: "/dashboard/inventory/items" },
-        { name: "Categories", path: "/dashboard/inventory/categories" },
-        { name: "Stock Movement", path: "/dashboard/inventory/stock-movement" },
+        { name: "Dashboard", path: "/dashboard/inventory/dashboard" },
+        { name: "Units", path: "/dashboard/inventory/units" },
+        { name: "Inventory Items", path: "/dashboard/inventory/items" },
+        { name: "Inventory Item Categories", path: "/dashboard/inventory/categories" },
+        { name: "Inventory Stocks", path: "/dashboard/inventory/stocks" },
+        { name: "Inventory Movements", path: "/dashboard/inventory/movements" },
+        { name: "Recipes", path: "/dashboard/inventory/recipes" },
+        { name: "Batch Recipes", path: "/dashboard/inventory/batch-recipes" },
+        { name: "Batch Inventory", path: "/dashboard/inventory/batch-inventory" },
+        { name: "Purchase Orders", path: "/dashboard/inventory/purchase-orders" },
+        { name: "Suppliers", path: "/dashboard/inventory/suppliers" },
+        { name: "Reports", path: "/dashboard/inventory/reports" },
+        { name: "Batch Reports", path: "/dashboard/inventory/batch-reports" },
+        { name: "Settings", path: "/dashboard/inventory/settings" },
       ],
     },
     {
@@ -158,9 +182,17 @@ export default function Sidebar() {
       path: "/dashboard/kitchens",
       hasSubmenu: true,
       submenu: [
-        { name: "All Kitchens", path: "/dashboard/kitchens/all" },
-        { name: "KOT Queue", path: "/dashboard/kitchens/kot-queue" },
+        { name: "Kitchen Settings", path: "/dashboard/kitchens/settings" },
+        { name: "All Kitchen KOT", path: "/dashboard/kitchens/all-kot" },
+        { name: "Default Kitchen", path: "/dashboard/kitchens/default" },
+        { name: "Rooftop", path: "/dashboard/kitchens/rooftop" },
+        { name: "Drinks Gallery", path: "/dashboard/kitchens/drinks-gallery" },
       ],
+    },
+    {
+      name: "Settings",
+      icon: <FiSettings className="w-5 h-5" />,
+      path: "/dashboard/settings",
     },
   ];
 
