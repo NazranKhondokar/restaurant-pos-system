@@ -230,108 +230,102 @@ export default function LoginForm() {
 
   return (
     <>
-      <form className="mt-10 flex flex-col gap-6" onSubmit={handleLoginSubmit}>
+      <form className="flex flex-col gap-5" onSubmit={handleLoginSubmit}>
         {/* email */}
         <div>
-          <div className="inputWrapper">
-            <label htmlFor="email" className="inputLabel">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              className="inputField"
-              value={loginFormData?.email}
-              onChange={handleOnchange}
-            />
-          </div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Enter your email
+          </label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="demo@dinedocket.com"
+            className="w-full px-4 py-3 bg-blue-50 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-gray-800"
+            value={loginFormData?.email}
+            onChange={handleOnchange}
+          />
 
           {loginFormError?.email?._errors[0] && (
-            <p className="errorMsg">{loginFormError.email._errors[0]}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {loginFormError.email._errors[0]}
+            </p>
           )}
         </div>
 
         {/* password */}
         <div>
-          <div className="inputWrapper">
-            <label htmlFor="password" className="inputLabel">
-              Password
-            </label>
-            <div className="inputPasswordField">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={loginFormData?.password}
-                onChange={handleOnchange}
-              />
-              <div
-                className="eyeIconContainer"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <IoEyeOff className="eyeIcon" />
-                ) : (
-                  <IoEye className="eyeIcon" />
-                )}
-              </div>
-            </div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Password
+          </label>
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              placeholder="••••••••••••"
+              className="w-full px-4 py-3 bg-blue-50 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-gray-800 pr-12"
+              value={loginFormData?.password}
+              onChange={handleOnchange}
+            />
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <IoEyeOff className="w-5 h-5" />
+              ) : (
+                <IoEye className="w-5 h-5" />
+              )}
+            </button>
           </div>
 
           {loginFormError?.password?._errors[0] && (
-            <p className="errorMsg">{loginFormError.password._errors[0]}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {loginFormError.password._errors[0]}
+            </p>
           )}
         </div>
 
-        {/* btn */}
+        {/* Remember me & Forgot password */}
+        <div className="flex items-center justify-between">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              className="w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
+            />
+            <span className="text-sm text-gray-600">Remember me</span>
+          </label>
+          <Link
+            href="/forgot-password"
+            className="text-sm text-gray-600 hover:text-gray-800 underline"
+          >
+            Forgot your password?
+          </Link>
+        </div>
+
+        {/* Login button */}
         <div>
           <button
             type="submit"
             disabled={isLoading && loadingType === AuthLoadingType.LOGIN}
-            className="w-full primaryBtn"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading && loadingType === AuthLoadingType.LOGIN ? (
-              <Spinner color={SpinnerColor.BLUE} size={SpinnerSize.SMALL} />
+              <Spinner color={SpinnerColor.WHITE} size={SpinnerSize.SMALL} />
             ) : (
               "Login"
             )}
           </button>
         </div>
-
-        {/* link */}
-        <div>
-          <p className="authLinkContent">
-            Dont&apos;t have an account?{" "}
-            <Link href="/registration" className="linkBlue">
-              Sign Up
-            </Link>
-          </p>
-        </div>
       </form>
-
-      <div className="my-10 dividerWrapper">
-        <div className="divider"></div>
-        <span className="dividerText">Or</span>
-        <div className="divider"></div>
-      </div>
-
-      {/* google login  */}
-      <div>
-        <button
-          disabled={isLoading && loadingType === AuthLoadingType.GOOGLE}
-          className="w-full primaryOutlineBtn"
-          onClick={handleGoogleLogin}
-        >
-          {isLoading && loadingType === AuthLoadingType.GOOGLE ? (
-            <Spinner color={SpinnerColor.BLUE} size={SpinnerSize.SMALL} />
-          ) : (
-            <span className="flex items-center gap-2">
-              <FcGoogle className="icon24" /> <span>Continue with Google</span>
-            </span>
-          )}
-        </button>
-      </div>
     </>
   );
 }
