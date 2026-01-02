@@ -171,7 +171,7 @@ export default function AddModifierGroupPage() {
 
           <div className="space-y-4">
             {/* Modifier Options List */}
-            {modifierOptions.map((option, index) => (
+            {modifierOptions.map((option, _index) => (
               <div
                 key={option.id}
                 className="border border-blue-300 rounded-lg p-4"

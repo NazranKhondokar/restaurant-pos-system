@@ -21,7 +21,6 @@ import { useAppSelector } from "@/redux/reduxHooks";
 export default function Header() {
   const router = useRouter();
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const user = useAppSelector((state) => state.user.user);
 
@@ -42,10 +41,8 @@ export default function Header() {
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
-      setIsFullscreen(true);
     } else {
       document.exitFullscreen();
-      setIsFullscreen(false);
     }
   };
 

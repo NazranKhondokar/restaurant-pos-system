@@ -32,10 +32,10 @@ export default function DashboardPage() {
     { month: "৳0", sales: 0 },
   ];
 
-  const dummyTodayOrders: any[] = [];
-  const dummyPaymentMethods: any[] = [];
-  const dummyTopDishes: any[] = [];
-  const dummyTopTables: any[] = [];
+  const dummyTodayOrders: never[] = [];
+  const dummyPaymentMethods: never[] = [];
+  const dummyTopDishes: never[] = [];
+  const dummyTopTables: never[] = [];
 
   return (
     <div className="space-y-6">
